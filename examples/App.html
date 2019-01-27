@@ -4,7 +4,13 @@
   <meta charset="utf-8">
   <title>tracking.js - face with camera</title>
   <link rel="stylesheet" href="css/App.css">
-
+  <style>
+    #video {
+      transform: rotateY(180deg);
+      -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+      -moz-transform:rotateY(180deg); /* Firefox */
+    }
+  </style>
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
 

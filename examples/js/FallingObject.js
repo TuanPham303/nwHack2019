@@ -14,7 +14,7 @@ function object(){
   this.y = Math.round(Math.random() * objectCanvas.height);
   this.r = 30; 
   this.dy = 10;
-  this.type = Math.random() > 0.1 ? 'apple' : 'bomb'
+  this.type = Math.random() > 0.3 ? 'apple' : 'bomb'
 }
 
 object.prototype.update = function () {

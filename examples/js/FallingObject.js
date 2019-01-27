@@ -13,15 +13,16 @@ function object(){
   this.x = Math.round(Math.random() * objectCanvas.width);
   this.y = Math.round(Math.random() * objectCanvas.height);
   this.r = 30; 
-  this.dy = 20;
+  this.dy = 10;
+  this.type = Math.random() > 0.1 ? 'apple' : 'bomb'
 }
 
-object.prototype.update=function(){
-  ctx.fillStyle = "#000"
-  ctx.beginPath()
-  ctx.rect(this.x, this.y, this.r, this.r)
-  ctx.fill()
-  ctx.closePath()
+object.prototype.update = function () {
+  ctx.fillStyle = this.type === 'bomb' ? "yellow" : "red";
+  ctx.beginPath();
+  ctx.rect(this.x, this.y, this.r, this.r);
+  ctx.fill();
+  ctx.closePath();
 
   this.y += this.dy;
   if (this.y > objectCanvas.height) {
@@ -30,10 +31,15 @@ object.prototype.update=function(){
      this.dy++;
   }
   if (faceX < this.x && this.x < faceX + faceWidth && this.y >= faceY) {
-    point++;
-    pointCounter.innerHTML = point;
-    this.y = 0;
-    this.x = Math.round(Math.random() * objectCanvas.width);
+    if (this.type === 'apple') {
+      point++;
+      pointCounter.innerHTML = point;
+      this.y = 0;
+      this.x = Math.round(Math.random() * objectCanvas.width);
+    } else if (this.type === 'bomb') {
+      alert("Gameover");
+      location.reload();
+    }
   }
 }
 
@@ -44,7 +50,7 @@ const fallingObject = () => {
   }
 }
 
-window.onload = function(){
+window.onload = function () {
   for(i = 0; i < objectNumber; i++){
      objects.push(new object())
   } 

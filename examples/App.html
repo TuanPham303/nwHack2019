@@ -7,24 +7,32 @@
 
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
-  <script src="./js/object.js"></script>
+  
 
 </head>
 <body>
   <div class="demo-container">
     <video id="video" width="100%" height="100%" preload autoplay loop muted></video>
     <canvas id="canvas"></canvas>
+    <canvas id="drawing-canvas"></canvas>
   </div>
 
   <script>
     window.onload = function() {
       var video = document.getElementById('video');
+      
       var canvas = document.getElementById('canvas');
-
       canvas.width = video.offsetWidth;
       canvas.height = video.offsetHeight;
+      
+      var drawingCanvas = document.getElementById('drawing-canvas');
+      drawingCanvas.width = video.offsetWidth;
+      drawingCanvas.height = video.offsetHeight;
 
       var context = canvas.getContext('2d');
+      var drawingContext = drawingCanvas.getContext('2d');
+
+      //Draw something for drawing-canvas
 
       var tracker = new tracking.ObjectTracker('face');
       tracker.setInitialScale(4);
@@ -41,12 +49,13 @@
           context.strokeRect(rect.x, rect.y, rect.width, rect.height);
           context.font = '11px Helvetica';
           context.fillStyle = "#fff";
+          context.lineWidth = 7;
           context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
           context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
         });
       });
     };
   </script>
-
+  <script src="./js/object.js"></script>
 </body>
 </html>

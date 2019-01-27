@@ -21,3 +21,11 @@ video, canvas {
 video {
   object-fit: cover;
 }
+
+#pointCounter {
+  color: #fff;
+  position: absolute;
+  background-color: #000;
+  font-size: 50px;
+  font-weight: bold;
+}
